@@ -1,14 +1,19 @@
-import React, { FunctionComponent } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCoffee } from "@fortawesome/free-solid-svg-icons";
+import React, { FunctionComponent, ReactNode } from 'react';
 
 type IconButtonProps = {
-  onClick: () => void;
+  handleClick: () => void;
+  icon: ReactNode;
 };
 
-const IconButton: FunctionComponent<IconButtonProps> = ({}) => (
-  <button className="flex justify-center px-3 py-1 text-purple-900">
-    <FontAwesomeIcon icon={faCoffee} />
+const IconButton: FunctionComponent<IconButtonProps> = ({
+  handleClick,
+  icon
+}) => (
+  <button
+    onClick={handleClick}
+    className="flex justify-center items-center fixed top-0 right-0 z-10 text-8xl bg-white px-3 py-1 text-purple-900 h-14 w-14 rounded-full"
+  >
+    {icon}
   </button>
 );
 

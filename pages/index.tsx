@@ -1,20 +1,26 @@
-import type { NextPage } from "next";
-import Image from "next/image";
-import Head from "next/head";
-import TextBox from "../components/atoms/TextBox/TextBox.component";
-import robot from "../public/robot.svg";
-import { motion } from "framer-motion";
-import TodoList, { Todo } from "../components/molecules/TodoList/TodoList";
-import { useState } from "react";
-import IconButton from "../components/atoms/IconButton/IconButton";
+import type { NextPage } from 'next';
+import Image from 'next/image';
+import Head from 'next/head';
+import TextBox from '../components/atoms/TextBox/TextBox.component';
+import robot from '../public/robot.svg';
+import { motion } from 'framer-motion';
+import TodoList, { Todo } from '../components/molecules/TodoList/TodoList';
+import { useState } from 'react';
+import IconButton from '../components/atoms/IconButton/IconButton';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimesCircle, faRobot } from '@fortawesome/free-solid-svg-icons';
 
 const Home: NextPage = () => {
   const [mockTodos, setMockTodos] = useState<Array<Todo>>([
-    { completed: true, text: "add to bash profile" },
-    { completed: false, text: "ask rene to provide stuf" },
+    { completed: true, text: 'add to bash profile' },
+    { completed: false, text: 'ask rene to provide stuf' }
   ]);
 
-  const [showTodos, setShowTodos] = useState(true);
+  const [showTodos, setShowTodos] = useState(false);
+
+  const handleShowTodoList = () => {
+    setShowTodos(!showTodos);
+  };
 
   const handleTodoToggle = (text: string) => {
     const newArr = [...mockTodos];
@@ -48,8 +54,8 @@ const Home: NextPage = () => {
           className="col-start-4 col-end-10 mt-10"
           animate={{ xHeight: [0, 100] }}
           transition={{
-            ease: "easeIn",
-            duration: 2,
+            ease: 'easeIn',
+            duration: 2
           }}
         >
           <TextBox>herro</TextBox>
@@ -59,11 +65,11 @@ const Home: NextPage = () => {
           animate={{
             rotate: [0, -1, 1],
             x: [1000, 0],
-            scale: [0, 1],
+            scale: [0, 1]
           }}
           transition={{
-            ease: "easeIn",
-            duration: 1.5,
+            ease: 'easeIn',
+            duration: 1.5
           }}
           className="col-span-full flex justify-center"
         >
@@ -71,7 +77,10 @@ const Home: NextPage = () => {
         </motion.div>
       </main>
 
-      <IconButton onClick={() => setShowTodos(!showTodos)} />
+      <IconButton
+        handleClick={handleShowTodoList}
+        icon={<FontAwesomeIcon icon={showTodos ? faTimesCircle : faRobot} />}
+      />
       <TodoList
         handleOnChange={handleTodoToggle}
         todos={mockTodos}

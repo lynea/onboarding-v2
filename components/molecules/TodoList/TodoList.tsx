@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import React, { FunctionComponent } from "react";
+import { motion } from 'framer-motion';
+import React, { FunctionComponent } from 'react';
 
 export type Todo = {
   completed: boolean;
@@ -17,18 +17,19 @@ const TodoList: FunctionComponent<TodoListProps> = ({
   todos,
   handleOnChange,
   visible,
-  className,
+  className
 }) => {
   const variants = {
-    visible: { opacity: 1 },
-    hidden: { opacity: 0 },
+    visible: { scaleX: 1 },
+    hidden: { scaleX: 0 }
   };
 
   return (
     <motion.div
-      className={`${className} flex justify-between flex-col   w-3/12 bg-purple-900 pt-12 px-4 pb-4 rounded-b text-white fixed top-0 right-0`}
+      style={{ originX: 1 }}
+      className={`${className} flex justify-between flex-col  bg-white filter drop-shadow-lg   w-3/12  pt-16 px-4 pb-4 rounded-b text-purple-900 fixed top-0 right-0`}
       initial="hidden"
-      animate={visible ? "visible" : "hidden"}
+      animate={visible ? 'visible' : 'hidden'}
       variants={variants}
     >
       {todos.map((todo, index) => (
